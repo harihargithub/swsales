@@ -18,6 +18,12 @@
       "iconCls": "x-fa fa-table",
       "xtype": "swsalesview",
       "leaf": true
+    },
+    {
+      "text": "Orders",
+      "iconCls": "x-fa fa-list",
+      "xtype": "ordersview",
+      "leaf": true
     }
   ]
 }
