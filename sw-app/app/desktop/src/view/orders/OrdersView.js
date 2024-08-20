@@ -9,6 +9,13 @@ Ext.define('SwApp.view.orders.OrdersView', {
   layout: 'vbox',
   items: [
     {
+      xtype: 'textfield',
+      fieldLabel: 'Global Filter',
+      listeners: {
+        change: 'onGlobalFilterChange',
+      },
+    },
+    {
       xtype: 'button',
       text: 'Fetch Orders',
       handler: 'onFetchOrdersClick',
@@ -20,18 +27,71 @@ Ext.define('SwApp.view.orders.OrdersView', {
         store: '{orders}',
       },
       columns: [
-        { text: 'Order ID', dataIndex: 'OrderID' },
-        { text: 'Customer ID', dataIndex: 'CustomerID' },
-        { text: 'Employee ID', dataIndex: 'EmployeeID' },
-        { text: 'Freight', dataIndex: 'Freight' },
-        { text: 'Ship City', dataIndex: 'ShipCity' },
-        { text: 'Verified', dataIndex: 'Verified' },
-        { text: 'Order Date', dataIndex: 'OrderDate' },
-        { text: 'Ship Name', dataIndex: 'ShipName' },
-        { text: 'Ship Country', dataIndex: 'ShipCountry' },
-        { text: 'Shipped Date', dataIndex: 'ShippedDate' },
-        { text: 'Ship Address', dataIndex: 'ShipAddress' },
+        {
+          text: 'Order ID',
+          dataIndex: 'OrderID',
+          filter: { type: 'string', itemDefaults: { emptyText: 'Search...' } },
+        },
+        {
+          text: 'Customer ID',
+          dataIndex: 'CustomerID',
+          filter: { type: 'string', itemDefaults: { emptyText: 'Search...' } },
+        },
+        {
+          text: 'Employee ID',
+          dataIndex: 'EmployeeID',
+          filter: { type: 'string', itemDefaults: { emptyText: 'Search...' } },
+        },
+        {
+          text: 'Freight',
+          dataIndex: 'Freight',
+          filter: { type: 'number', itemDefaults: { emptyText: 'Search...' } },
+        },
+        {
+          text: 'Ship City',
+          dataIndex: 'ShipCity',
+          filter: { type: 'string', itemDefaults: { emptyText: 'Search...' } },
+        },
+        {
+          text: 'Verified',
+          dataIndex: 'Verified',
+          filter: { type: 'boolean', itemDefaults: { emptyText: 'Search...' } },
+        },
+        {
+          text: 'Order Date',
+          dataIndex: 'OrderDate',
+          xtype: 'datecolumn',
+          format: 'd-M-Y', // DD-MMM-YYYY format
+          filter: {
+            type: 'date',
+            itemDefaults: {
+              emptyText: 'Search...',
+              dateFormat: 'd-M-Y', // Ensure the filter uses the same date format
+            },
+          },
+        },
+        {
+          text: 'Ship Name',
+          dataIndex: 'ShipName',
+          filter: { type: 'string', itemDefaults: { emptyText: 'Search...' } },
+        },
+        {
+          text: 'Ship Country',
+          dataIndex: 'ShipCountry',
+          filter: { type: 'string', itemDefaults: { emptyText: 'Search...' } },
+        },
+        {
+          text: 'Shipped Date',
+          dataIndex: 'ShippedDate',
+          filter: { type: 'date', itemDefaults: { emptyText: 'Search...' } },
+        },
+        {
+          text: 'Ship Address',
+          dataIndex: 'ShipAddress',
+          filter: { type: 'string', itemDefaults: { emptyText: 'Search...' } },
+        },
       ],
+      plugins: 'gridfilters', // Enable grid filters plugin
       flex: 1,
     },
   ],
