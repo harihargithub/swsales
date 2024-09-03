@@ -24,6 +24,12 @@
       "iconCls": "x-fa fa-list",
       "xtype": "ordersview",
       "leaf": true
+    },
+    {
+      "text": "User Details",
+      "iconCls": "x-fa fa-user",
+      "xtype": "swuserlistview",
+      "leaf": true
     }
   ]
 }
