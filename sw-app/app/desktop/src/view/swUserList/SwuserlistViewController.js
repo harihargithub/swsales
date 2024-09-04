@@ -3,7 +3,9 @@ Ext.define('SwApp.view.swuserlist.SwuserlistViewController', {
   alias: 'controller.swuserlistviewcontroller',
 
   onRefreshClick: function () {
-    Ext.Msg.alert('Hello', 'Hello Everybody');
+    var grid = this.lookupReference('userGrid');
+    grid.getStore().reload();
+    Ext.Msg.alert('Refresh', 'Grid data refreshed.');
   },
 
   onNewUserClick: function () {
@@ -11,11 +13,19 @@ Ext.define('SwApp.view.swuserlist.SwuserlistViewController', {
   },
 
   onGridSelect: function (grid, record) {
-    var detailsPanel = grid.up('panel').down('#detailsPanel');
-    if (detailsPanel) {
-      detailsPanel.update(record.getData());
+    // Check if record is an array-like object and access the first item
+    var selectedRecord = Array.isArray(record) ? record[0] : record;
+    console.log('Selected Record Object:', selectedRecord); // Log the selected record object
+
+    if (selectedRecord && selectedRecord.data) {
+      var detailsPanel = this.lookupReference('detailsPanel');
+      if (detailsPanel) {
+        detailsPanel.setData(selectedRecord.data); // Use setData instead of update
+      } else {
+        Ext.Msg.alert('Error', 'Details panel not found.');
+      }
     } else {
-      Ext.Msg.alert('Error', 'Details panel not found.');
+      Ext.Msg.alert('Error', 'Selected record is undefined or has no data.');
     }
   },
 

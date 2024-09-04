@@ -6,15 +6,15 @@ Ext.define('SwApp.view.swuserlist.SwuserlistViewModel', {
   },
   stores: {
     users: {
+      autoLoad: true,
       proxy: {
         type: 'rest',
         url: 'https://jsonplaceholder.typicode.com/users',
         reader: {
           type: 'json',
-          rootProperty: '',
+          rootProperty: '', // Ensure this matches the structure of the returned data
         },
       },
-      autoLoad: true,
     },
   },
 });

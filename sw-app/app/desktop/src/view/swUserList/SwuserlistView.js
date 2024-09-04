@@ -7,8 +7,10 @@ Ext.define('SwApp.view.swuserlist.SwuserlistView', {
   items: [
     {
       xtype: 'grid',
+      reference: 'userGrid', // Add reference for the grid
       flex: 1,
-      height: 800, // Set a specific height for the grid
+      // height: '100vh', // Set a specific height for the grid
+      // layout: 'vbox',
       tbar: [
         '->',
         {
@@ -25,6 +27,9 @@ Ext.define('SwApp.view.swuserlist.SwuserlistView', {
       bbar: {
         xtype: 'pagingtoolbar',
         displayInfo: true,
+        bind: {
+          store: '{users}', // Bind the paging toolbar to the users store
+        },
       },
       columns: [
         { text: 'User ID', dataIndex: 'id', width: 120 },
@@ -39,14 +44,15 @@ Ext.define('SwApp.view.swuserlist.SwuserlistView', {
     },
     {
       xtype: 'panel',
-      itemId: 'detailsPanel',
+      reference: 'detailsPanel', // Add reference for the details panel
       flex: 1,
-      tpl: [
+      tpl: new Ext.XTemplate(
         '<div><strong>User ID:</strong> {id}</div>',
         '<div><strong>First Name:</strong> {name}</div>',
         '<div><strong>Last Name:</strong> {username}</div>',
         '<div><strong>Email:</strong> {email}</div>',
-      ],
+      ),
+      data: {}, // Initialize with empty data to ensure the template is ready
     },
     {
       xtype: 'button',
