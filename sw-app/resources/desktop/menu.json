@@ -30,6 +30,12 @@
       "iconCls": "x-fa fa-user",
       "xtype": "swuserlistview",
       "leaf": true
+    },
+    {
+      "text": "tbar n bbar test",
+      "iconCls": "x-fa fa-user",
+      "xtype": "tnbbarsview",
+      "leaf": true
     }
   ]
 }

@@ -5,9 +5,7 @@
   "framework": "ext",
   "template": "moderndesktop",
   "indexHtmlPath": "index.html",
-  "requires": [
-    "font-awesome"
-  ],
+  "requires": ["font-awesome", "ext"],
 
   "builds": {
     "desktop": {
@@ -22,30 +20,24 @@
     }
   },
 
-  "classpath": ["app/shared/src","app/${build.id}/src"],
-  "overrides": ["app/shared/overrides","app/${build.id}/overrides"],
+  "classpath": ["app/shared/src", "app/${build.id}/src"],
+  "overrides": ["app/shared/overrides", "app/${build.id}/overrides"],
 
   "sass": {
     "namespace": "SwApp",
 
-    "etc": [
-      "sass/etc/all.scss"
-    ],
-    "var": [
-      "app/shared/sass/var.scss",
-      "app/${build.id}/sass/var.scss"
-    ],
+    "etc": ["sass/etc/all.scss"],
+    "var": ["app/shared/sass/var.scss", "app/${build.id}/sass/var.scss"],
     "src": [
       "app/shared/src/sass/src.scss",
-      "app/${build.id}/sass/src.scss"
+      "app/${build.id}/sass/src.scss",
+      "app/${build.id}/view/tnbbars/TnbbarsView.scss"
     ]
   },
 
   "resources": [
-    { "path": "resources", "output": "shared" }
-
-    ,{ "path": "resources/${build.id}" }
-
+    { "path": "resources", "output": "shared" },
+    { "path": "resources/${build.id}" }
   ],
 
   "output": {
@@ -53,23 +45,22 @@
     "page": "index.html",
     "manifest": "generatedFiles/${build.id}.json",
     "js": "generatedFiles/${build.id}/app.js",
-    "appCache": {"enable": false},
+    "appCache": { "enable": false },
     "resources": {
       "path": "${build.id}/resources",
       "shared": "resources"
     }
   },
-  
+
   "fashion": {
-   "missingParameters": "error",
-    "inliner": {"enable": false}
+    "missingParameters": "error",
+    "inliner": { "enable": false }
   },
 
-  "js": [
-  ],
+  "js": [],
 
-  "classic": {"js": []},
-  "modern": {"js": []},
+  "classic": { "js": [] },
+  "modern": { "js": [] },
 
   "css": [
     {
@@ -86,8 +77,8 @@
 
   "production": {
     "js": [
-      {"path": "app.js", "bundle": true},
-      {"path": "${app.webpack.bundle}", "compress": false }
+      { "path": "app.js", "bundle": true },
+      { "path": "${app.webpack.bundle}", "compress": false }
     ],
     "output": {
       "appCache": {
@@ -107,15 +98,12 @@
   },
   "testing": {
     "js": [
-      {"path": "app.js", "bundle": true},
-      {"path": "${app.webpack.bundle}", "compress": false }
+      { "path": "app.js", "bundle": true },
+      { "path": "${app.webpack.bundle}", "compress": false }
     ]
   },
   "development": {
-    "js": [
-      {"path": "app.js", "bundle": true},
-      {"path": "main.js"}
-    ],
+    "js": [{ "path": "app.js", "bundle": true }, { "path": "main.js" }],
     "watch": {
       "delay": 250
     }
@@ -129,8 +117,8 @@
   },
 
   "cache": {
-      "enable": false,
-      "deltas": "${build.id}/deltas"
+    "enable": false,
+    "deltas": "${build.id}/deltas"
   },
 
   "appCache": {

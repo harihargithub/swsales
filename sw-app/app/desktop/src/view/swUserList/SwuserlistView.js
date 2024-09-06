@@ -8,9 +8,9 @@ Ext.define('SwApp.view.swuserlist.SwuserlistView', {
     {
       xtype: 'grid',
       reference: 'userGrid', // Add reference for the grid
-      flex: 1,
-      // height: '100vh', // Set a specific height for the grid
-      // layout: 'vbox',
+      flex: 6, // Adjust flex to take 4 parts of the available space
+      style: { width: '80%' },
+      plugins: 'gridfilters', // Enable grid filters plugin
       tbar: [
         '->',
         {
@@ -45,7 +45,7 @@ Ext.define('SwApp.view.swuserlist.SwuserlistView', {
     {
       xtype: 'panel',
       reference: 'detailsPanel', // Add reference for the details panel
-      flex: 1,
+      flex: 2, // Adjust flex to take 2 parts of the available space
       tpl: new Ext.XTemplate(
         '<div><strong>User ID:</strong> {id}</div>',
         '<div><strong>First Name:</strong> {name}</div>',
