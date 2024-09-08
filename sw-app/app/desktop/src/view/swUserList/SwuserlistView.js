@@ -3,14 +3,15 @@ Ext.define('SwApp.view.swuserlist.SwuserlistView', {
   xtype: 'swuserlistview',
   controller: { type: 'swuserlistviewcontroller' },
   viewModel: { type: 'swuserlistviewmodel' },
+  requires: [
+    'Ext.grid.plugin.PagingToolbar', // Add the required plugin
+  ],
   layout: 'vbox',
   items: [
     {
-      xtype: 'grid',
-      reference: 'userGrid', // Add reference for the grid
-      flex: 6, // Adjust flex to take 4 parts of the available space
-      style: { width: '80%' },
-      plugins: 'gridfilters', // Enable grid filters plugin
+      xtype: 'panel',
+      layout: 'fit',
+      flex: 5, // 5 means 5/6 of the available space
       tbar: [
         '->',
         {
@@ -24,35 +25,40 @@ Ext.define('SwApp.view.swuserlist.SwuserlistView', {
           handler: 'onNewUserClick',
         },
       ],
-      bbar: {
-        xtype: 'pagingtoolbar',
-        displayInfo: true,
-        bind: {
-          store: '{users}', // Bind the paging toolbar to the users store
+      items: [
+        {
+          xtype: 'grid',
+          reference: 'userGrid',
+          flex: 1, // Ensure the grid takes up available space
+          style: { width: '100%' },
+          plugins: {
+            gridfilters: true,
+            gridpagingtoolbar: true, // Use the paging toolbar plugin
+          },
+          columns: [
+            { text: 'User ID', dataIndex: 'id', width: 120 },
+            { text: 'First Name', dataIndex: 'name', width: 200 },
+            { text: 'Last Name', dataIndex: 'username', width: 200 },
+            { text: 'Email', dataIndex: 'email', width: 200 },
+          ],
+          bind: '{users}', // Bind the store to the viewModel
+          listeners: {
+            select: 'onGridSelect',
+          },
         },
-      },
-      columns: [
-        { text: 'User ID', dataIndex: 'id', width: 120 },
-        { text: 'First Name', dataIndex: 'name', width: 200 },
-        { text: 'Last Name', dataIndex: 'username', width: 200 },
-        { text: 'Email', dataIndex: 'email', width: 200 },
       ],
-      bind: '{users}', // Bind the store to the viewModel
-      listeners: {
-        select: 'onGridSelect',
-      },
     },
     {
       xtype: 'panel',
-      reference: 'detailsPanel', // Add reference for the details panel
-      flex: 2, // Adjust flex to take 2 parts of the available space
+      reference: 'detailsPanel',
+      flex: 1, // Ensure the details panel takes up available space
       tpl: new Ext.XTemplate(
         '<div><strong>User ID:</strong> {id}</div>',
         '<div><strong>First Name:</strong> {name}</div>',
         '<div><strong>Last Name:</strong> {username}</div>',
         '<div><strong>Email:</strong> {email}</div>',
       ),
-      data: {}, // Initialize with empty data to ensure the template is ready
+      data: {},
     },
     {
       xtype: 'button',

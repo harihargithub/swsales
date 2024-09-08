@@ -15,6 +15,14 @@ Ext.define('SwApp.view.swuserlist.SwuserlistViewModel', {
           rootProperty: '', // Ensure this matches the structure of the returned data
         },
       },
+      listeners: {
+        load: function (store, records, successful, operation, eOpts) {
+          console.log('Store loaded:', records);
+        },
+        exception: function (proxy, response, operation, eOpts) {
+          console.error('Store load failed:', response);
+        },
+      },
     },
   },
 });
