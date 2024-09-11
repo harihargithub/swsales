@@ -32,24 +32,21 @@ Ext.define('SwApp.view.swuserlist.SwuserlistView', {
           reference: 'userGrid',
           flex: 1, // Ensure the grid takes up available space
           style: { width: '100%' },
-          plugins: 'gridfilters', // Use the grid filters plugin
-          bbar: {
-            xtype: 'pagingtoolbar',
-            displayInfo: true,
-            bind: {
-              store: '{users}',
-            },
+          plugins: {
+            gridfilters: true,
+            gridpagingtoolbar: true, // Use the paging toolbar plugin
           },
           columns: [
             { text: 'User ID', dataIndex: 'id', width: 120, filter: 'number' },
             {
               text: 'First Name',
-              dataIndex: 'name',
+              // dataindex: 'name',
+              dataIndex: 'firstName',
               width: 200,
               filter: 'string',
             },
             {
-              text: 'Last Name',
+              text: 'User Name',
               dataIndex: 'username',
               width: 200,
               filter: 'string',

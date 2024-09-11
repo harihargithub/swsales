@@ -4,8 +4,9 @@ Ext.define('SwApp.view.swuserlist.SwuserlistViewController', {
 
   onRefreshClick: function () {
     var grid = this.lookupReference('userGrid');
-    grid.getStore().reload();
-    Ext.Msg.alert('Refresh', 'Grid data refreshed.');
+    var store = grid.getStore();
+    store.loadPage(1); // Load the first page
+    Ext.Msg.alert('Refresh', 'Grid data refreshed and will load page:1');
   },
 
   onNewUserClick: function () {
