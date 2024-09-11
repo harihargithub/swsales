@@ -66,8 +66,8 @@ Ext.define('SwApp.view.swuserlist.SwuserlistView', {
       flex: 1, // Ensure the details panel takes up available space
       tpl: new Ext.XTemplate(
         '<div><strong>User ID:</strong> {id}</div>',
-        '<div><strong>First Name:</strong> {name}</div>',
-        '<div><strong>Last Name:</strong> {username}</div>',
+        '<div><strong>First Name:</strong> {firstName}</div>',
+        '<div><strong>User Name:</strong> {username}</div>',
         '<div><strong>Email:</strong> {email}</div>',
       ),
       data: {},
