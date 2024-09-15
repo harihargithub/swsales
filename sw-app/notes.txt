@@ -1,0 +1,3 @@
+(base) PS C:\Users\nhari\OneDrive\Documents\sencha\swsales\sw-app> sencha app watch
+
+Ref sencha.docs - https://docs.google.com/document/d/1FYITRRVg1Iu5Xt4vLz5nEfOXvg2rFQBdGLaLzDI1eZc/edit
